@@ -12,6 +12,7 @@
     "@expo/metro-runtime": "~3.2.1",
     "@expo/vector-icons": "^14.0.0",
     "expo": "~51.0.8",
+    "expo-dev-client": "~4.0.14",
     "expo-image-picker": "~15.0.5",
     "expo-media-library": "~16.0.3",
     "expo-splash-screen": "~0.27.4",
