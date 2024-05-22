@@ -1,5 +1,5 @@
-import {Modal, Pressable, StyleSheet, Text, View} from 'react-native';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import {Modal, Pressable, StyleSheet, Text, View} from 'react-native';
 
 export default function EmojiPicker({isVisible, children, onClose}) {
     return (

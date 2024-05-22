@@ -31,6 +31,7 @@ export default function EmojiSticker({imageSize, stickerSource}) {
             translateY.value += event.changeY;
         });
 
+    // @ts-ignore
     const containerStyle = useAnimatedStyle(() => {
         return {
             transform: [
