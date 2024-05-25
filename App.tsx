@@ -1,3 +1,4 @@
+import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
 import * as ImagePicker from 'expo-image-picker';
 import * as MediaLibrary from 'expo-media-library';
 import * as SplashScreen from 'expo-splash-screen';
@@ -8,11 +9,17 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {captureRef} from 'react-native-view-shot';
 import Button from './components/Button';
 import CircleButton from './components/CircleButton';
+import {DisplayLocations} from "./components/DisplayLocations";
 import EmojiList from './components/EmojiList';
 import EmojiPicker from './components/EmojiPicker';
 import EmojiSticker from './components/EmojiSticker';
 import IconButton from './components/IconButton';
 import ImageViewer from './components/ImageViewer';
+
+const client = new ApolloClient({
+    uri: 'https://flyby-router-demo.herokuapp.com/',
+    cache: new InMemoryCache(),
+});
 
 SplashScreen.preventAutoHideAsync();
 setTimeout(SplashScreen.hideAsync, 5000);
@@ -77,32 +84,35 @@ export default function App() {
     };
 
     return (
-        <GestureHandlerRootView style={styles.container}>
-            <View style={styles.imageContainer}>
-                <View ref={imageRef} collapsable={false}>
-                    <ImageViewer placeholderImageSource={PlaceholderImage} selectedImage={selectedImage}/>
-                    {pickedEmoji && <EmojiSticker imageSize={40} stickerSource={pickedEmoji}/>}
-                </View>
-            </View>
-            {showAppOptions ? (
-                <View style={styles.optionsContainer}>
-                    <View style={styles.optionsRow}>
-                        <IconButton icon="refresh" label="Reset" onPress={onReset}/>
-                        <CircleButton onPress={onAddSticker}/>
-                        <IconButton icon="save-alt" label="Save" onPress={onSaveImageAsync}/>
+        <ApolloProvider client={client}>
+            <GestureHandlerRootView style={styles.container}>
+                <View style={styles.imageContainer}>
+                    <View ref={imageRef} collapsable={false}>
+                        <ImageViewer placeholderImageSource={PlaceholderImage} selectedImage={selectedImage}/>
+                        {pickedEmoji && <EmojiSticker imageSize={40} stickerSource={pickedEmoji}/>}
                     </View>
                 </View>
-            ) : (
-                <View style={styles.footerContainer}>
-                    <Button theme="primary" label="Choose a photo" onPress={pickImageAsync}/>
-                    <Button theme="secondary" label="Use this photo" onPress={() => setShowAppOptions(true)}/>
-                </View>
-            )}
-            <EmojiPicker isVisible={isModalVisible} onClose={onModalClose}>
-                <EmojiList onSelect={setPickedEmoji} onCloseModal={onModalClose}/>
-            </EmojiPicker>
-            <StatusBar style="light"/>
-        </GestureHandlerRootView>
+                <DisplayLocations/>
+                {showAppOptions ? (
+                    <View style={styles.optionsContainer}>
+                        <View style={styles.optionsRow}>
+                            <IconButton icon="refresh" label="Reset" onPress={onReset}/>
+                            <CircleButton onPress={onAddSticker}/>
+                            <IconButton icon="save-alt" label="Save" onPress={onSaveImageAsync}/>
+                        </View>
+                    </View>
+                ) : (
+                    <View style={styles.footerContainer}>
+                        <Button theme="primary" label="Choose a photo" onPress={pickImageAsync}/>
+                        <Button theme="secondary" label="Use this photo" onPress={() => setShowAppOptions(true)}/>
+                    </View>
+                )}
+                <EmojiPicker isVisible={isModalVisible} onClose={onModalClose}>
+                    <EmojiList onSelect={setPickedEmoji} onCloseModal={onModalClose}/>
+                </EmojiPicker>
+                <StatusBar style="light"/>
+            </GestureHandlerRootView>
+        </ApolloProvider>
     );
 }
 
