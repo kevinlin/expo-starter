@@ -36,3 +36,7 @@ yarn-error.*
 
 # JetBrains IDE config
 .idea/
+
+# Prebuild artifacts
+android/
+ios/

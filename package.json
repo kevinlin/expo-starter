@@ -7,7 +7,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "ts:check": "tsc"
+    "ts:check": "tsc",
+    "analyze:ios": "source-map-explorer 'dist/_expo/static/js/ios/*.js' 'dist/_expo/static/js/ios/*.js.map'",
+    "analyze:android": "source-map-explorer 'dist/_expo/static/js/android/*.js' 'dist/_expo/static/js/android/*.js.map'"
   },
   "dependencies": {
     "@apollo/client": "^3.10.4",
@@ -31,6 +33,7 @@
     "@babel/core": "^7.20.0",
     "@types/react": "^18.3.2",
     "@types/react-native": "^0.73.0",
+    "source-map-explorer": "^2.5.3",
     "typescript": "^5.4.5"
   },
   "private": true
