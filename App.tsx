@@ -29,6 +29,7 @@ const PlaceholderImage = require('./assets/images/background-image.png');
 export default function App() {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [showAppOptions, setShowAppOptions] = useState(false);
+    const [displayLocations, setDisplayLocations] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [pickedEmoji, setPickedEmoji] = useState<string | null>(null);
     const [status, requestPermission] = ImagePicker.useMediaLibraryPermissions();
@@ -92,7 +93,6 @@ export default function App() {
                         {pickedEmoji && <EmojiSticker imageSize={40} stickerSource={pickedEmoji}/>}
                     </View>
                 </View>
-                <DisplayLocations/>
                 {showAppOptions ? (
                     <View style={styles.optionsContainer}>
                         <View style={styles.optionsRow}>
@@ -105,11 +105,14 @@ export default function App() {
                     <View style={styles.footerContainer}>
                         <Button theme="primary" label="Choose a photo" onPress={pickImageAsync}/>
                         <Button theme="secondary" label="Use this photo" onPress={() => setShowAppOptions(true)}/>
+                        <Button theme="secondary" label="Display locations" onPress={() => setDisplayLocations(true)}/>
                     </View>
                 )}
+                {displayLocations && <DisplayLocations/>}
                 <EmojiPicker isVisible={isModalVisible} onClose={onModalClose}>
                     <EmojiList onSelect={setPickedEmoji} onCloseModal={onModalClose}/>
                 </EmojiPicker>
+
                 <StatusBar style="light"/>
             </GestureHandlerRootView>
         </ApolloProvider>
