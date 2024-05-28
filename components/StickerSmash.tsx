@@ -5,16 +5,15 @@ import * as SplashScreen from 'expo-splash-screen';
 import {StatusBar} from 'expo-status-bar';
 import React, {useRef, useState} from 'react';
 import {Alert, StyleSheet, View} from 'react-native';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {captureRef} from 'react-native-view-shot';
-import Button from './components/Button';
-import CircleButton from './components/CircleButton';
-import {DisplayLocations} from "./components/DisplayLocations";
-import EmojiList from './components/EmojiList';
-import EmojiPicker from './components/EmojiPicker';
-import EmojiSticker from './components/EmojiSticker';
-import IconButton from './components/IconButton';
-import ImageViewer from './components/ImageViewer';
+import Button from './Button';
+import CircleButton from './CircleButton';
+import {DisplayLocations} from "./DisplayLocations";
+import EmojiList from './EmojiList';
+import EmojiPicker from './EmojiPicker';
+import EmojiSticker from './EmojiSticker';
+import IconButton from './IconButton';
+import ImageViewer from './ImageViewer';
 
 const client = new ApolloClient({
     uri: 'https://flyby-router-demo.herokuapp.com/',
@@ -22,11 +21,11 @@ const client = new ApolloClient({
 });
 
 SplashScreen.preventAutoHideAsync();
-setTimeout(SplashScreen.hideAsync, 5000);
+setTimeout(SplashScreen.hideAsync, 3000);
 
-const PlaceholderImage = require('./assets/images/background-image.png');
+const PlaceholderImage = require('../assets/images/background-image.png');
 
-export default function App() {
+export default function StickerSmash() {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [showAppOptions, setShowAppOptions] = useState(false);
     const [displayLocations, setDisplayLocations] = useState(false);
@@ -86,7 +85,7 @@ export default function App() {
 
     return (
         <ApolloProvider client={client}>
-            <GestureHandlerRootView style={styles.container}>
+            <View style={styles.container}>
                 <View style={styles.imageContainer}>
                     <View ref={imageRef} collapsable={false}>
                         <ImageViewer placeholderImageSource={PlaceholderImage} selectedImage={selectedImage}/>
@@ -114,7 +113,7 @@ export default function App() {
                 </EmojiPicker>
 
                 <StatusBar style="light"/>
-            </GestureHandlerRootView>
+            </View>
         </ApolloProvider>
     );
 }
