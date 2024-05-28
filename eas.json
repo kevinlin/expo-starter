@@ -8,9 +8,12 @@
       "distribution": "internal"
     },
     "preview": {
+      "channel": "development",
       "distribution": "internal"
     },
-    "production": {}
+    "production": {
+      "channel": "production"
+    }
   },
   "submit": {
     "production": {}
