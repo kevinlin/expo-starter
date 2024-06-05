@@ -1,31 +1,73 @@
 {
+  "root": true,
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "extends": [
-    "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+    "plugin:react/recommended",
+    "plugin:react-native/all",
+    "standard",
+    "prettier"
   ],
   "plugins": [
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "react",
+    "react-native"
   ],
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  },
+  "globals": {
+    "__DEV__": false,
+    "jasmine": false,
+    "beforeAll": false,
+    "afterAll": false,
+    "beforeEach": false,
+    "afterEach": false,
+    "test": false,
+    "expect": false,
+    "describe": false,
+    "jest": false,
+    "it": false
+  },
   "rules": {
-    "no-unused-vars": "warn",
-    "@typescript-eslint/no-explicit-any": "off",
-    "no-lonely-if": "warn",
-    // General ESLint rules
-    "no-console": "warn",
-    
-    // React and React Native specific rules
-    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
-    "react/prop-types": "off", // Since we're using TypeScript for type checking
-    "react-native/no-unused-styles": "warn",
-    "react-native/split-platform-components": "warn",
-    "react-native/no-inline-styles": "warn",
-    "react-native/no-color-literals": "warn",
-    "react-native/no-raw-text": "warn",
-    "react-native/sort-styles": "warn"
+    "@typescript-eslint/ban-ts-ignore": 0,
+    "@typescript-eslint/ban-ts-comment": 0,
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/explicit-member-accessibility": 0,
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "@typescript-eslint/indent": 0,
+    "@typescript-eslint/member-delimiter-style": 0,
+    "@typescript-eslint/no-empty-interface": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-object-literal-type-assertion": 0,
+    "@typescript-eslint/no-var-requires": 0,
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "comma-dangle": 0,
+    "multiline-ternary": 0,
+    "no-undef": 0,
+    "no-unused-vars": 0,
+    "no-use-before-define": 0,
+    "no-global-assign": 0,
+    "quotes": 0,
+    "react-native/no-raw-text": 0,
+    "react/no-unescaped-entities": 0,
+    "react/prop-types": 0,
+    // suppress errors for missing 'import React' in files
+    "react/react-in-jsx-scope": 0,
+    "space-before-function-paren": 0
   }
 }
