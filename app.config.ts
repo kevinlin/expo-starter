@@ -54,6 +54,7 @@ export default {
             favicon: "./assets/favicon.png",
         },
         extra: {
+            storybookEnabled: process.env.STORYBOOK_ENABLED,
             eas: {
                 projectId: "b9dfc812-0d6c-49c4-8a9a-72a9b080ad75",
             },
