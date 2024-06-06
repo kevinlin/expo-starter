@@ -33,7 +33,7 @@ export default {
     orientation: "portrait",
     icon: "./assets/icon.png",
     userInterfaceStyle: "light",
-    scheme: "com.bostonscientific.jarvis-sakura-mobile.stage",
+    scheme: getUniqueIdentifier(),
     splash: {
       image: "./assets/splash.png",
       resizeMode: "contain",
