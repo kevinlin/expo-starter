@@ -1,5 +1,6 @@
 import {AddIcon, Box, HStack, Icon, Pressable, Text,} from "@gluestack-ui/themed"
-import React, {useState} from "react";
+import Button from 'components/Button';
+import React, {useEffect, useState} from "react";
 import shortid from "shortid";
 import {
     ProgressBar,
@@ -10,6 +11,8 @@ import {
     SwipeableContainer,
 } from "./components";
 import {defaultTodos, getCompletedTasks, getDay} from "./utils";
+import strings from 'app/locales/Localization';
+import { getLocales } from "expo-localization";
 
 const Todos = () => {
     const [item, setItem] = useState("");
@@ -35,6 +38,36 @@ const Todos = () => {
             setLastItemSelected(false);
         }
     };
+
+    const [currentLanguage, setCurrentLanguage] = useState(strings.getLanguage());
+
+    const changeLanguage = async (lang: string) => {
+        strings.setLanguage(lang);
+        setCurrentLanguage(strings.getLanguage());
+    };
+
+    const loadLanguage = async () => {
+        var lang = getLocales()[0].languageCode;
+        if (lang) {
+        strings.setLanguage(lang);
+        setCurrentLanguage(strings.getLanguage());
+        } else {
+            lang = 'en';
+        }
+    };
+
+    const switchLanguage = () => {
+        if (currentLanguage == 'ja') {
+            changeLanguage('en')
+        } else {
+            changeLanguage('ja')
+        }
+    }
+
+    useEffect(() => {
+        loadLanguage();
+    }, []);
+    
 
     return (
 
@@ -130,6 +163,9 @@ const Todos = () => {
                                 </Text>
                             </HStack>
                         </Pressable>
+                        <Text>{strings.formatString(strings.message, {name: "Peter"})}</Text>
+                        <Button theme="primary" label={strings.changeLanguage} onPress={switchLanguage}/>
+
                     </StyledScrollView>
                 </StyledGestureHandlerRootView>
             </StyledSafeAreaView>
