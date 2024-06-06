@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import PublicClientApplication, { MSALConfiguration } from "react-native-msal2";
+import {
+  ActivityIndicator,
+  Alert,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import PublicClientApplication, {
+  MSALConfiguration,
+  MSALInteractiveParams,
+} from "react-native-msal2";
 
 const config: MSALConfiguration = {
   auth: {
     clientId: "27225af2-948c-4229-afb6-82bc1e9ac211",
-    // This authority is used as the default in `acquireToken` and `acquireTokenSilent` if not provided to those methods.
     authority:
       "https://login.microsoftonline.com/b5b8b483-5597-4ae7-8e27-fcc464a3b584",
     redirectUri:
@@ -31,6 +40,10 @@ const LoginPage = () => {
           "Error initializing the msalClient, check your config.",
           error
         );
+        Alert.alert(
+          "Initialization Error",
+          "There was an error initializing the authentication client. Please try again later."
+        );
       } finally {
         setLoading(false);
       }
@@ -40,14 +53,13 @@ const LoginPage = () => {
   }, []);
 
   const doLogin = async () => {
-    Alert.alert("Login Button Tapped", "You have tapped the login button.");
     if (!msalClient) {
       Alert.alert("Error", "MSAL Client not initialized.");
       return;
     }
 
-    const params = { scopes: ["user.read"] };
     try {
+      const params: MSALInteractiveParams = { scopes };
       const result = await msalClient.acquireToken(params);
       if (result) {
         Alert.alert("Login Successful", `Welcome, ${result.account.username}`);
@@ -56,8 +68,20 @@ const LoginPage = () => {
       }
     } catch (error) {
       console.error("Error during login", error);
+      Alert.alert(
+        "Login Error",
+        "An error occurred during login. Please try again."
+      );
     }
   };
+
+  if (loading) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="#007bff" />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
