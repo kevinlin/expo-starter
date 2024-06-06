@@ -3,14 +3,14 @@ const IS_PREVIEW = process.env.APP_VARIANT === "preview";
 
 const getUniqueIdentifier = () => {
   if (IS_DEV) {
-    return "com.nextstep.sticker_smash.dev";
+    return "com.bostonscientific.jarvis-sakura-mobile.stage";
   }
 
   if (IS_PREVIEW) {
-    return "com.nextstep.sticker_smash.preview";
+    return "com.bostonscientific.jarvis-sakura-mobile.stage";
   }
 
-  return "com.nextstep.sticker_smash";
+  return "com.bostonscientific.jarvis-sakura-mobile.stage";
 };
 
 const getAppName = () => {
@@ -33,7 +33,7 @@ export default {
     orientation: "portrait",
     icon: "./assets/icon.png",
     userInterfaceStyle: "light",
-    scheme: "com.nextstep.sticker-smash",
+    scheme: "com.bostonscientific.jarvis-sakura-mobile.stage",
     splash: {
       image: "./assets/splash.png",
       resizeMode: "contain",

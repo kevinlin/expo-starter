@@ -25,8 +25,9 @@ const config: MSALConfiguration = {
       default: "http://localhost:3000",
     }),
   },
+  
 };
-const scopes = ["openid", "offline_access"];
+const scopes = ['user.Read'];
 
 const LoginPage = () => {
   const [msalClient, setMsalClient] = useState<PublicClientApplication | null>(
