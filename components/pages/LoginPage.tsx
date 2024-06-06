@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
   Alert,
+  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -17,8 +18,12 @@ const config: MSALConfiguration = {
     clientId: "27225af2-948c-4229-afb6-82bc1e9ac211",
     authority:
       "https://login.microsoftonline.com/b5b8b483-5597-4ae7-8e27-fcc464a3b584",
-    redirectUri:
-      "msauth.com.bostonscientific.jarvis-sakura-mobile.stage://auth",
+    redirectUri: Platform.select({
+      android:
+        "msauth://com.bostonscientific.jarvis-sakura-mobile.stage/cEuBfTV24qnKzfDEzC%2F4t8Z6SLg%3D", // ex: "msauth://com.package/Xo8WBi6jzSxKDVR4drqm84yr9iU%3D"
+      ios: "msauth.com.bostonscientific.jarvis-sakura-mobile.stage://auth", // ex: "msauth.com.package.app://auth"
+      default: "http://localhost:3000",
+    }),
   },
 };
 const scopes = ["openid", "offline_access"];
