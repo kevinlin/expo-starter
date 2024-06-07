@@ -3,14 +3,22 @@ const IS_PREVIEW = process.env.APP_VARIANT === "preview";
 
 const getUniqueIdentifier = () => {
   if (IS_DEV) {
+    return "com.bostonscientific.jarvis-sakura-mobile.dev";
+  } else if (IS_PREVIEW) {
     return "com.bostonscientific.jarvis-sakura-mobile.stage";
+  } else {
+    return "com.bostonscientific.jarvis-sakura-mobile";
   }
+};
 
-  if (IS_PREVIEW) {
-    return "com.bostonscientific.jarvis-sakura-mobile.stage";
+const getPackageName = () => {
+  if (IS_DEV) {
+    return "com.bostonscientific.jarvis_sakura_mobile.dev";
+  } else if (IS_PREVIEW) {
+    return "com.bostonscientific.jarvis_sakura_mobile.stage";
+  } else {
+    return "com.bostonscientific.jarvis_sakura_mobile";
   }
-
-  return "com.bostonscientific.jarvis-sakura-mobile.stage";
 };
 
 const getAppName = () => {
@@ -48,7 +56,7 @@ export default {
         foregroundImage: "./assets/adaptive-icon.png",
         backgroundColor: "#ffffff",
       },
-      package: getUniqueIdentifier(),
+      package: getPackageName(),
     },
     web: {
       favicon: "./assets/favicon.png",

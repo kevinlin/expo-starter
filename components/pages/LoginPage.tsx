@@ -7,20 +7,6 @@ import * as WebBrowser from "expo-web-browser";
 import * as React from "react";
 import { Button, Platform, SafeAreaView, Text } from "react-native";
 
-// const config: MSALConfiguration = {
-//   auth: {
-//     clientId: "27225af2-948c-4229-afb6-82bc1e9ac211",
-//     authority:
-//       "https://login.microsoftonline.com/b5b8b483-5597-4ae7-8e27-fcc464a3b584",
-//     redirectUri: Platform.select({
-//       android:
-//         "msauth://com.bostonscientific.jarvis-sakura-mobile.stage/cEuBfTV24qnKzfDEzC%2F4t8Z6SLg%3D", // ex: "msauth://com.package/Xo8WBi6jzSxKDVR4drqm84yr9iU%3D"
-//       ios: "msauth.com.bostonscientific.jarvis-sakura-mobile.stage://auth", // ex: "msauth.com.package.app://auth"
-//       default: "http://localhost:3000",
-//     }),
-//   },
-// };
-
 WebBrowser.maybeCompleteAuthSession();
 
 export default function App() {
@@ -31,8 +17,8 @@ export default function App() {
   const clientId = "27225af2-948c-4229-afb6-82bc1e9ac211";
   const redirectUri = Platform.select({
     android:
-      "msauth://com.bostonscientific.jarvis-sakura-mobile.stage/cEuBfTV24qnKzfDEzC%2F4t8Z6SLg%3D", // ex: "msauth://com.package/Xo8WBi6jzSxKDVR4drqm84yr9iU%3D"
-    ios: "msauth.com.bostonscientific.jarvis-sakura-mobile.stage://auth", // ex: "msauth.com.package.app://auth"
+      "msauth://com.bostonscientific.jarvis-sakura-mobile.dev/V8IMm67znTu7Nrm7MXuKo8uVKZA%3D", // ex: "msauth://com.package/Xo8WBi6jzSxKDVR4drqm84yr9iU%3D"
+    ios: "msauth.com.bostonscientific.jarvis-sakura-mobile.dev://auth", // ex: "msauth.com.package.app://auth"
     default: "http://localhost:3000",
   });
 
