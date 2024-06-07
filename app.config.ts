@@ -24,13 +24,11 @@ const getPackageName = () => {
 const getAppName = () => {
   if (IS_DEV) {
     return "StickerSmash (Dev)";
-  }
-
-  if (IS_PREVIEW) {
+  } else if (IS_PREVIEW) {
     return "StickerSmash (Preview)";
+  } else {
+    return "StickerSmash: Emoji Stickers";
   }
-
-  return "StickerSmash: Emoji Stickers";
 };
 
 export default {
