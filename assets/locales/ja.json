@@ -2,5 +2,6 @@
     "addTask": "タスクを追加",
     "changeLanguage": "言語の変更",
     "message": "{name}という名前の人に会う",
-    "login_slogan": "Your ultimate Intelligent Co-pilot"
+    "login_slogan": "Your ultimate Intelligent Co-pilot",
+    "login_with_sso": "Login with SSO"
 }

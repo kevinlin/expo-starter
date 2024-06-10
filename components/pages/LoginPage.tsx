@@ -57,7 +57,7 @@ export default function LoginPage() {
         <Text style={styles.medium18} >{strings.login_slogan}</Text>
 
         <View style={styles.login_button}>
-          <TextButton label="Login with SSO" onPress={() => {
+          <TextButton label={strings.login_with_sso} onPress={() => {
             promptAsync().then((codeResponse) => {
               console.log("AuthSessionResult", codeResponse);
               if (request && codeResponse?.type === "success" && discovery) {
