@@ -26,6 +26,6 @@ const styles = StyleSheet.create({
     buttonLabel: {
         color: colors.blue3,
         fontSize: 18,
-        fontFamily: 'Medium'
+        fontFamily: 'Bold',
     },
 });

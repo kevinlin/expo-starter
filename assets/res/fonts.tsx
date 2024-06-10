@@ -1,4 +1,3 @@
-
 const fonts = {
     fontsLoaded: {
         'Heavy': require('../../assets/fonts/SSTHeavy.ttf'),
