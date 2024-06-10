@@ -42,8 +42,7 @@ export default {
     scheme: getUniqueIdentifier(),
     splash: {
       image: "./assets/splash.png",
-      resizeMode: "contain",
-      backgroundColor: "#25292e",
+      resizeMode: "cover",
     },
     ios: {
       supportsTablet: true,

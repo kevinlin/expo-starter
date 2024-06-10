@@ -1,7 +1,6 @@
 import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
 import * as ImagePicker from 'expo-image-picker';
 import * as MediaLibrary from 'expo-media-library';
-import * as SplashScreen from 'expo-splash-screen';
 import {StatusBar} from 'expo-status-bar';
 import React, {useRef, useState} from 'react';
 import {Alert, StyleSheet, View} from 'react-native';
@@ -14,6 +13,7 @@ import EmojiPicker from './EmojiPicker';
 import EmojiSticker from './EmojiSticker';
 import IconButton from './IconButton';
 import ImageViewer from './ImageViewer';
+import { SplashScreen } from "expo-router";
 
 const client = new ApolloClient({
     uri: 'https://flyby-router-demo.herokuapp.com/',
