@@ -1,19 +1,4 @@
 {
-  "compilerOptions": {
-    "baseUrl": "./",
-    "paths": {
-      "@/*": ["src/*"]
-    },
-    "target": "ESNext",
-    "module": "CommonJS",
-    "lib": ["DOM", "ESNext"],
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true
-  },
-  "extends": "expo/tsconfig.base",
-  "include": ["app/**/*"],
+  "compilerOptions": {},
+  "extends": "expo/tsconfig.base"
 }

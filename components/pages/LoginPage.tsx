@@ -5,11 +5,23 @@ import {
 } from "expo-auth-session";
 import * as WebBrowser from "expo-web-browser";
 import * as React from "react";
-import { Button, Platform, SafeAreaView, Text } from "react-native";
+import {Platform, StyleSheet, View, Image, Text, Pressable } from "react-native";
+
+import strings from '../../assets/locales/Localization';
+import images from '../../assets/res/images';
+import '../../assets/res/fonts';
+import colors from '../../assets/res/colors';
+
+import { SplashScreen } from "expo-router";
+import TextButton from "../TextButton";
+
 
 WebBrowser.maybeCompleteAuthSession();
 
-export default function App() {
+SplashScreen.preventAutoHideAsync();
+setTimeout(SplashScreen.hideAsync, 3000);
+
+export default function LoginPage() {
   // Endpoint
   const discovery = useAutoDiscovery(
     "https://login.microsoftonline.com/b5b8b483-5597-4ae7-8e27-fcc464a3b584/v2.0"
@@ -36,33 +48,63 @@ export default function App() {
   );
 
   return (
-    <SafeAreaView>
-      <Button
-        disabled={!request}
-        title="Login"
-        onPress={() => {
-          promptAsync().then((codeResponse) => {
-            console.log("AuthSessionResult", codeResponse);
-            if (request && codeResponse?.type === "success" && discovery) {
-              exchangeCodeAsync(
-                {
-                  clientId,
-                  code: codeResponse.params.code,
-                  extraParams: request.codeVerifier
-                    ? { code_verifier: request.codeVerifier }
-                    : undefined,
-                  redirectUri,
-                },
-                discovery
-              ).then((res) => {
-                console.log("TokenResponse", res);
-                setToken(res.accessToken);
-              });
-            }
-          });
-        }}
-      />
-      <Text>{token}</Text>
-    </SafeAreaView>
+    
+    <View style={styles.container}>
+      <Image style={styles.backgroundImage} source={images.img_background}  />
+
+        <Image style={styles.logo} source={images.img_logo} />
+
+        <Text style={styles.medium18} >{strings.login_slogan}</Text>
+
+        <View style={styles.login_button}>
+          <TextButton label="Login with SSO" onPress={() => {
+            promptAsync().then((codeResponse) => {
+              console.log("AuthSessionResult", codeResponse);
+              if (request && codeResponse?.type === "success" && discovery) {
+                exchangeCodeAsync(
+                  {
+                    clientId,
+                    code: codeResponse.params.code,
+                    extraParams: request.codeVerifier
+                      ? { code_verifier: request.codeVerifier }
+                      : undefined,
+                    redirectUri,
+                  },
+                  discovery
+                ).then((res) => {
+                  console.log("TokenResponse", res);
+                  setToken(res.accessToken);
+                });
+              }
+            });
+          }} >
+          </TextButton>
+        </View>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  backgroundImage: {
+    height: '100%',
+    position: 'absolute',
+    width: '100%'
+  },
+  container: {
+    alignItems: 'center',  
+    flex: 1,
+  },
+  medium18: {
+    color: colors.white,
+    fontFamily: 'Medium',
+    fontSize: 18,
+    marginTop: 20
+  },
+  logo: {
+    marginTop: 204
+   },
+  login_button: {
+    marginTop: 200
+  },
+  
+});

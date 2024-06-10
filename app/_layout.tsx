@@ -5,6 +5,7 @@ import { Stack } from "expo-router/stack";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Storybook from "../.storybook";
 import "expo-dev-client";
+import React from "react";
 
 export default function Layout() {
   const isStorybook = Constants.expoConfig?.extra?.storybookEnabled ?? false;
@@ -14,9 +15,9 @@ export default function Layout() {
     return (
       <GestureHandlerRootView>
         <GluestackUIProvider config={config}>
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          </Stack>
+            <Stack>
+              <Stack.Screen name="index" options={{ headerShown: false }}/>
+            </Stack>
         </GluestackUIProvider>
       </GestureHandlerRootView>
     );

@@ -68,6 +68,7 @@
     "react/prop-types": 0,
     // suppress errors for missing 'import React' in files
     "react/react-in-jsx-scope": 0,
-    "space-before-function-paren": 0
+    "space-before-function-paren": 0,
+    "sort-styles": 0
   }
 }
