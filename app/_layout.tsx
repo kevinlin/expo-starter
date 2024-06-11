@@ -16,7 +16,8 @@ export default function Layout() {
       <GestureHandlerRootView>
         <GluestackUIProvider config={config}>
             <Stack>
-              <Stack.Screen name="index" options={{ headerShown: false }}/>
+                <Stack.Screen name="index" options={{ headerShown: false }}/>
+                <Stack.Screen name="tabs" options={{ headerShown: false }}/>
             </Stack>
         </GluestackUIProvider>
       </GestureHandlerRootView>

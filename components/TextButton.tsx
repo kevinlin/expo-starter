@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
         height: 58,
         width: 268,
         borderWidth: 1,
-        alignItems: 'center',
         justifyContent: 'center',
     },
     buttonLabel: {

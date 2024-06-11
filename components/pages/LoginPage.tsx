@@ -12,7 +12,7 @@ import images from '../../assets/res/images';
 import '../../assets/res/fonts';
 import colors from '../../assets/res/colors';
 
-import { SplashScreen } from "expo-router";
+import {SplashScreen, useRouter} from "expo-router";
 import TextButton from "../TextButton";
 
 
@@ -47,8 +47,10 @@ export default function LoginPage() {
     discovery
   );
 
+  const router = useRouter();
+
   return (
-    
+
     <View style={styles.container}>
       <Image style={styles.backgroundImage} source={images.img_background}  />
 
@@ -74,6 +76,8 @@ export default function LoginPage() {
                 ).then((res) => {
                   console.log("TokenResponse", res);
                   setToken(res.accessToken);
+
+                  router.push("/tabs");
                 });
               }
             });
@@ -91,7 +95,7 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   container: {
-    alignItems: 'center',  
+    alignItems: 'center',
     flex: 1,
   },
   medium18: {
@@ -106,5 +110,5 @@ const styles = StyleSheet.create({
   login_button: {
     marginTop: 200
   },
-  
+
 });
