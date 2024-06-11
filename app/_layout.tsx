@@ -7,6 +7,7 @@ import Storybook from "../.storybook";
 import "expo-dev-client";
 import React from "react";
 import FontLoader from '../assets/res/font/FontLoader';
+import { UserProvider } from "../components/models/UserProvider";
 
 export default function Layout() {
   const isStorybook = Constants.expoConfig?.extra?.storybookEnabled ?? false;
@@ -15,6 +16,7 @@ export default function Layout() {
   } else {
     return (
       <FontLoader>
+        <UserProvider>
       <GestureHandlerRootView>
         <GluestackUIProvider config={config}>
             <Stack>
@@ -23,6 +25,7 @@ export default function Layout() {
             </Stack>
         </GluestackUIProvider>
       </GestureHandlerRootView>
+      </UserProvider>
       </FontLoader>
       
     );

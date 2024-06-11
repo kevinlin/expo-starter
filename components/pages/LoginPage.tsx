@@ -15,6 +15,7 @@ import colors from '../../assets/res/colors';
 import { SplashScreen, router } from "expo-router";
 import TextButton from "../TextButton";
 import { jwtDecode } from "jwt-decode";
+import { useUser } from "../models/UserContext";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -47,7 +48,15 @@ export default function LoginPage() {
     discovery
   );
 
-  const { fontsLoaded } = useFontContext();
+  useFontContext();
+
+  const mapToUser = (data: any): User => ({
+    familyName: data.family_name,
+    givenName: data.given_name,
+    email: data.unique_name,
+  });
+
+  const { user, setUser } = useUser();
 
   return (
 
@@ -76,9 +85,18 @@ export default function LoginPage() {
                 ).then((res) => {
                   console.log("TokenResponse", res);
                   setToken(res.accessToken);
-                  console.log('decode: ', jwtDecode(res.accessToken));
-
-                  router.push("/tabs");
+                  const decodedPayload = jwtDecode(res.accessToken);
+                  const jsonString = JSON.stringify(decodedPayload, null, 2);
+                  console.log('jsonString: ', jsonString);
+                  try {
+                    const parsedObject = JSON.parse(jsonString || "");
+                    const user = mapToUser(parsedObject);
+                    console.log('User: ', user);
+                    setUser({ familyName: user.familyName, givenName: user.givenName, email: user.email });
+                    router.push("/tabs");
+                  } catch (error) {
+                    console.error('Error parsing JSON:', error);
+                  }
                 });
               }
             });
