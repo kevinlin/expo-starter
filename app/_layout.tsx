@@ -6,6 +6,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Storybook from "../.storybook";
 import "expo-dev-client";
 import React from "react";
+import FontLoader from '../assets/res/font/FontLoader';
 
 export default function Layout() {
   const isStorybook = Constants.expoConfig?.extra?.storybookEnabled ?? false;
@@ -13,6 +14,7 @@ export default function Layout() {
     return <Storybook />;
   } else {
     return (
+      <FontLoader>
       <GestureHandlerRootView>
         <GluestackUIProvider config={config}>
             <Stack>
@@ -21,6 +23,8 @@ export default function Layout() {
             </Stack>
         </GluestackUIProvider>
       </GestureHandlerRootView>
+      </FontLoader>
+      
     );
   }
 }

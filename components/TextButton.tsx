@@ -1,6 +1,6 @@
 import {Pressable, StyleSheet, Text} from 'react-native';
-import '../assets/res/fonts';
 import colors from '../assets/res/colors';
+import { useFontContext } from '../assets/res/font/FontContext';
 
 export default function TextButton({label, onPress}) {
 

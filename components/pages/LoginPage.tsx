@@ -5,16 +5,16 @@ import {
 } from "expo-auth-session";
 import * as WebBrowser from "expo-web-browser";
 import * as React from "react";
-import {Platform, StyleSheet, View, Image, Text, Pressable } from "react-native";
+import {Platform, StyleSheet, View, Image, Text } from "react-native";
 
 import strings from '../../assets/locales/Localization';
 import images from '../../assets/res/images';
-import '../../assets/res/fonts';
+import { useFontContext } from '../../assets/res/font/FontContext';
 import colors from '../../assets/res/colors';
 
-import {SplashScreen, useRouter} from "expo-router";
+import { SplashScreen, router } from "expo-router";
 import TextButton from "../TextButton";
-
+import { jwtDecode } from "jwt-decode";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -47,7 +47,7 @@ export default function LoginPage() {
     discovery
   );
 
-  const router = useRouter();
+  const { fontsLoaded } = useFontContext();
 
   return (
 
@@ -76,6 +76,7 @@ export default function LoginPage() {
                 ).then((res) => {
                   console.log("TokenResponse", res);
                   setToken(res.accessToken);
+                  console.log('decode: ', jwtDecode(res.accessToken));
 
                   router.push("/tabs");
                 });
@@ -92,7 +93,8 @@ const styles = StyleSheet.create({
   backgroundImage: {
     height: '100%',
     position: 'absolute',
-    width: '100%'
+    width: '100%',
+    resizeMode: 'cover'
   },
   container: {
     alignItems: 'center',
@@ -105,7 +107,8 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   logo: {
-    marginTop: 204
+    marginTop: 122,
+    resizeMode: 'cover'
    },
   login_button: {
     marginTop: 200
