@@ -7,7 +7,7 @@ import Storybook from "../.storybook";
 import "expo-dev-client";
 import React from "react";
 import FontLoader from '../assets/res/font/FontLoader';
-import { UserProvider } from "../components/models/UserProvider";
+import { UserProvider } from "../components/models/UserContext";
 
 export default function Layout() {
   const isStorybook = Constants.expoConfig?.extra?.storybookEnabled ?? false;

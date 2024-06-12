@@ -16,6 +16,7 @@ import { SplashScreen, router } from "expo-router";
 import TextButton from "../TextButton";
 import { jwtDecode } from "jwt-decode";
 import { useUser } from "../models/UserContext";
+import { useEffect } from "react";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -57,6 +58,12 @@ export default function LoginPage() {
   });
 
   const { user, setUser } = useUser();
+  
+  useEffect(() => {
+      if (user?.familyName != null) {
+        router.push("/tabs");
+      }
+  }, [user]);
 
   return (
 
