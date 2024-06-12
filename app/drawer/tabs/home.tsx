@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { useUser } from "../../components/models/UserContext";
-import { useFontContext } from "../../assets/res/font/FontContext";
-import colors from '../../assets/res/colors';
+import { useUser } from "../../../components/models/UserContext";
+import { useFontContext } from "../../../assets/res/font/FontContext";
+import colors from '../../../assets/res/colors';
 
 const HomeScreen = () => {
     const { user } = useUser();

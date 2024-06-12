@@ -58,10 +58,10 @@ export default function LoginPage() {
   });
 
   const { user, setUser } = useUser();
-  
+
   useEffect(() => {
       if (user?.familyName != null) {
-        router.push("/tabs");
+        router.push("/drawer");
       }
   }, [user]);
 
@@ -100,7 +100,7 @@ export default function LoginPage() {
                     const user = mapToUser(parsedObject);
                     console.log('User: ', user);
                     setUser({ familyName: user.familyName, givenName: user.givenName, email: user.email });
-                    router.push("/tabs");
+                    router.push("/drawer");
                   } catch (error) {
                     console.error('Error parsing JSON:', error);
                   }
